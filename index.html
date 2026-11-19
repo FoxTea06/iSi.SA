@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ms" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iSi.SA — Pelaporan Sisa Industri dan Komersial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Tricolor Brand Strip -->
+  <div class="strip" aria-hidden="true"></div>
+
+  <!-- Top Header -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button type="button" class="menu-toggle" id="menu-toggle-btn" aria-label="Buka menu navigasi">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <div class="logo-chip">
+        <div class="emblem emblem-mbsa" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="16" fill="#0B2A55" />
+            <circle cx="18" cy="18" r="13.5" stroke="#4CAF3A" stroke-width="1.5" />
+            <path d="M18 8l2.5 5.2 5.7.8-4.1 4 1 5.7L18 21l-5.1 2.7 1-5.7-4.1-4 5.7-.8L18 8z" fill="#F2D27A" />
+          </svg>
+        </div>
+        <span class="logo-divider" aria-hidden="true"></span>
+        <div class="emblem-isisa">
+          <span class="isisa-mark">iSi.<span>SA</span></span>
+        </div>
+      </div>
+
+      <div class="brand-meta">
+        <div class="brand-kicker">
+          <span>MBSA · JKAKS</span>
+          <span class="pill-tag">SISTEM iSi.SA</span>
+        </div>
+        <h1>Pelaporan Sisa Industri dan Komersial</h1>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <div class="role-pick" title="Peranan Pegawai">
+        <span class="role-avatar" aria-hidden="true">PO</span>
+        <div class="role-info">
+          <span class="role-label">Peranan aktif</span>
+          <strong class="role-name">Pegawai Operasi JKAKS</strong>
+        </div>
+      </div>
+
+      <button type="button" class="icon-btn" id="theme-toggle-btn" title="Tukar mod cerah / gelap" aria-label="Tukar tema">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Shell: Sidebar + Workspace -->
+  <div class="layout">
+    <!-- Left Sidebar -->
+    <aside class="sidenav" id="sidenav" aria-label="Navigasi Utama">
+      <div class="nav-group">
+        <button type="button" class="nav-link active" data-view="form-view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+          <span>Borang Pelaporan</span>
+        </button>
+
+        <button type="button" class="nav-link" data-view="records-view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <span>Rekod Laporan</span>
+          <span class="nav-count" id="nav-record-count">0</span>
+        </button>
+
+        <button type="button" class="nav-link" data-view="analytics-view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-5 4 3 5-7"/></svg>
+          <span>Analisis Sektor</span>
+        </button>
+      </div>
+
+      <div class="nav-section-title">ALIRAN DATA BORANG</div>
+      <div class="nav-group">
+        <button type="button" class="nav-link nav-jump active-step" data-jump-section="1" data-step-indicator="1">
+          <span class="nav-step">1</span>
+          <span>Sektor &amp; Premis</span>
+        </button>
+        <button type="button" class="nav-link nav-jump" data-jump-section="2" data-step-indicator="2">
+          <span class="nav-step">2</span>
+          <span>Janaan Sisa</span>
+        </button>
+        <button type="button" class="nav-link nav-jump" data-jump-section="3" data-step-indicator="3">
+          <span class="nav-step">3</span>
+          <span>Kaedah Pengurusan</span>
+        </button>
+        <button type="button" class="nav-link nav-jump" data-jump-section="4" data-step-indicator="4">
+          <span class="nav-step">4</span>
+          <span>Fasiliti Penerima</span>
+        </button>
+      </div>
+
+      <div class="nav-section-title">PEMATUHAN PERUNDANGAN</div>
+      <div class="side-note">
+        <strong>Nota Penting</strong>
+        <p>Data sisa terjadual perlu <b>diasingkan</b> daripada sisa pepejal biasa dan diurus mengikut keperluan perundangan.</p>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+
+      <!-- Navy Hero Overview Strip (mirrors iSi.SA Mass-Balance Hero) -->
+      <section class="hero" aria-label="Ringkasan Aliran Pengurusan Sisa">
+        <div class="hero-top">
+          <div>
+            <h2>Aliran Pengurusan dan Destinasi Sisa</h2>
+            <p class="hero-sub">Pengumpulan data 5 sektor · Pengasingan sisa terjadual · Jejak kuantiti mengikut kaedah</p>
+          </div>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-on-dark btn-sm" id="hero-new-btn">+ Borang Baharu</button>
+          </div>
+        </div>
+
+        <div class="mb-flow">
+          <div class="mb-step">
+            <span class="mb-label">Janaan Sisa</span>
+            <strong class="mb-val" id="hero-total-ton">0.00 <small>t</small></strong>
+            <span class="mb-meta" id="hero-total-rec">0 rekod</span>
+          </div>
+          <span class="mb-arrow" aria-hidden="true">›</span>
+          <div class="mb-step">
+            <span class="mb-label">Kitar Semula</span>
+            <strong class="mb-val" id="hero-recycle-ton">0.00 <small>t</small></strong>
+            <span class="mb-meta" id="hero-recycle-pct">0% bahagian</span>
+          </div>
+          <span class="mb-arrow" aria-hidden="true">›</span>
+          <div class="mb-step">
+            <span class="mb-label">Pulih</span>
+            <strong class="mb-val" id="hero-recover-ton">0.00 <small>t</small></strong>
+            <span class="mb-meta" id="hero-recover-pct">0% bahagian</span>
+          </div>
+          <span class="mb-arrow" aria-hidden="true">›</span>
+          <div class="mb-step">
+            <span class="mb-label">Lupuskan</span>
+            <strong class="mb-val" id="hero-dispose-ton">0.00 <small>t</small></strong>
+            <span class="mb-meta" id="hero-dispose-pct">0% bahagian</span>
+          </div>
+          <span class="mb-arrow" aria-hidden="true">›</span>
+          <div class="mb-step mb-step-highlight">
+            <span class="mb-label">Kadar Pengalihan</span>
+            <strong class="mb-val" id="hero-diversion-pct">0%</strong>
+            <span class="mb-meta" id="hero-sched-meta">0.00 t terjadual</span>
+          </div>
+        </div>
+
+        <div class="hero-foot">
+          <span class="hero-dot" aria-hidden="true"></span>
+          Data sisa terjadual perlu <strong>diasingkan</strong> daripada sisa pepejal biasa dan diurus mengikut keperluan perundangan (Akta Kualiti Alam Sekeliling 1974 / Buangan Terjadual 2005).
+        </div>
+      </section>
+
+      <!-- ==================== VIEW 1: BORANG PELAPORAN ==================== -->
+      <section id="form-view" class="view-panel active">
+        <div id="edit-mode-banner" class="alert-bar alert-warn hidden">
+          <span><strong>Mod Suntingan:</strong> Anda sedang mengemas kini rekod <strong id="edit-record-id"></strong>.</span>
+          <button type="button" class="btn btn-ghost btn-sm" id="cancel-edit-btn">Batal Suntingan</button>
+        </div>
+
+        <div class="form-layout">
+          <form id="waste-report-form" novalidate>
+            <!-- BAHAGIAN 1: PENGUMPULAN DATA DARIPADA PELBAGAI SEKTOR -->
+            <div class="card form-section" id="section-1" data-section="1">
+              <div class="card-head">
+                <span class="step-pill">Langkah 1</span>
+                <div>
+                  <h3>Pengumpulan Data Sisa Daripada Pelbagai Sektor</h3>
+                  <p>Pilih sektor sumber sisa dan lengkapkan maklumat premis pelapor.</p>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Pilih Sektor Premis <span class="req">*</span></label>
+                <div class="sector-grid" role="radiogroup" aria-label="Sektor Premis">
+                  <label class="sector-card">
+                    <input type="radio" name="sektor" value="Industri" required />
+                    <div class="sector-card-inner">
+                      <div class="sector-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M4 20V9l6 3V9l6 3V4h4v16"/></svg>
+                      </div>
+                      <span class="sector-name">Industri</span>
+                    </div>
+                  </label>
+
+                  <label class="sector-card">
+                    <input type="radio" name="sektor" value="Kilang" />
+                    <div class="sector-card-inner">
+                      <div class="sector-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V11l7-4v14M12 11l7-3v13M8 15h1M8 18h1M15 14h2M15 17h2"/></svg>
+                      </div>
+                      <span class="sector-name">Kilang</span>
+                    </div>
+                  </label>
+
+                  <label class="sector-card">
+                    <input type="radio" name="sektor" value="Gudang" />
+                    <div class="sector-card-inner">
+                      <div class="sector-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10l10-6 10 6v10H2V10z"/><path d="M7 20v-7h10v7M10 16h4"/></svg>
+                      </div>
+                      <span class="sector-name">Gudang</span>
+                    </div>
+                  </label>
+
+                  <label class="sector-card">
+                    <input type="radio" name="sektor" value="Pusat Komersial" />
+                    <div class="sector-card-inner">
+                      <div class="sector-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="14" rx="1"/><path d="M3 10h18M9 20v-6h6v6M7 13h1M16 13h1"/></svg>
+                      </div>
+                      <span class="sector-name">Pusat Komersial</span>
+                    </div>
+                  </label>
+
+                  <label class="sector-card">
+                    <input type="radio" name="sektor" value="Premis Berkaitan" />
+                    <div class="sector-card-inner">
+                      <div class="sector-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M3 21h18M10 7h1M13 7h1M10 11h1M13 11h1M10 15h4v6h-4z"/></svg>
+                      </div>
+                      <span class="sector-name">Premis Berkaitan</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="namaPremis">Nama Premis / Syarikat <span class="req">*</span></label>
+                  <input type="text" id="namaPremis" name="namaPremis" placeholder="cth: Kilang Elektronik Maju Sdn. Bhd." required />
+                </div>
+                <div class="field">
+                  <label for="noPendaftaran">No. Pendaftaran / Lesen Premis <span class="req">*</span></label>
+                  <input type="text" id="noPendaftaran" name="noPendaftaran" placeholder="cth: SSM-202101045678 / PBT-9921" required />
+                </div>
+                <div class="field">
+                  <label for="negeri">Negeri / Wilayah <span class="req">*</span></label>
+                  <select id="negeri" name="negeri" required>
+                    <option value="">-- Pilih Negeri --</option>
+                    <option>Johor</option>
+                    <option>Kedah</option>
+                    <option>Kelantan</option>
+                    <option>Melaka</option>
+                    <option>Negeri Sembilan</option>
+                    <option>Pahang</option>
+                    <option>Perak</option>
+                    <option>Perlis</option>
+                    <option>Pulau Pinang</option>
+                    <option>Sabah</option>
+                    <option>Sarawak</option>
+                    <option>Selangor</option>
+                    <option>Terengganu</option>
+                    <option>W.P. Kuala Lumpur</option>
+                    <option>W.P. Putrajaya</option>
+                    <option>W.P. Labuan</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="pegawaiPelapor">Nama Pegawai Pelapor <span class="req">*</span></label>
+                  <input type="text" id="pegawaiPelapor" name="pegawaiPelapor" placeholder="cth: Ahmad Faizal bin Ramli" required />
+                </div>
+                <div class="field">
+                  <label for="tarikhLaporan">Tarikh Pelaporan <span class="req">*</span></label>
+                  <input type="date" id="tarikhLaporan" name="tarikhLaporan" required />
+                </div>
+                <div class="field">
+                  <label for="tempohLaporan">Tempoh Pelaporan (Bulan) <span class="req">*</span></label>
+                  <input type="month" id="tempohLaporan" name="tempohLaporan" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- BAHAGIAN 2: JENIS DAN KUANTITI SISA YANG DIJANA -->
+            <div class="card form-section" id="section-2" data-section="2">
+              <div class="card-head">
+                <span class="step-pill">Langkah 2</span>
+                <div>
+                  <h3>Jenis dan Kuantiti Sisa yang Dijana</h3>
+                  <p>Asingkan kategori sisa pepejal biasa daripada sisa terjadual serta rekod kuantiti dijana.</p>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Pengasingan Kategori Sisa (Wajib) <span class="req">*</span></label>
+                <div class="category-toggle" role="radiogroup" aria-label="Kategori Pengasingan Sisa">
+                  <label class="cat-option cat-normal">
+                    <input type="radio" name="kategoriSisa" value="Sisa Pepejal Biasa" checked />
+                    <div class="cat-box">
+                      <div class="cat-title">Sisa Pepejal Biasa</div>
+                      <div class="cat-desc">Sisa komersial / industri bukan berbahaya (Akta 672)</div>
+                    </div>
+                  </label>
+
+                  <label class="cat-option cat-scheduled">
+                    <input type="radio" name="kategoriSisa" value="Sisa Terjadual" />
+                    <div class="cat-box">
+                      <div class="cat-title">Sisa Terjadual (Scheduled Waste)</div>
+                      <div class="cat-desc">Wajib diasingkan &amp; diurus ikut Peraturan Buangan Terjadual 2005</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Dynamic Legal Fields for Sisa Terjadual -->
+              <div id="scheduled-waste-panel" class="scheduled-panel hidden">
+                <div class="scheduled-panel-header">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  <span>Keperluan Perundangan Sisa Terjadual (JAS / eSWIS)</span>
+                </div>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="kodSW">Kod Buangan Terjadual (SW) <span class="req">*</span></label>
+                    <select id="kodSW" name="kodSW">
+                      <option value="">-- Pilih Kod SW --</option>
+                      <option value="SW 102">SW 102 — Bateri asid plumbum terpakai</option>
+                      <option value="SW 110">SW 110 — Sisa pemasangan elektrik &amp; elektronik (e-sisa)</option>
+                      <option value="SW 204">SW 204 — Enapcemar mengandungi logam berat</option>
+                      <option value="SW 305">SW 305 — Minyak pelincir terpakai</option>
+                      <option value="SW 306">SW 306 — Minyak hidraulik terpakai</option>
+                      <option value="SW 322">SW 322 — Pelarut organik bukan terhalogen</option>
+                      <option value="SW 409">SW 409 — Bekas/beg tercemar bahan kimia</option>
+                      <option value="SW 410">SW 410 — Kain buruk/plastik/penapis tercemar minyak</option>
+                      <option value="SW 429">SW 429 — Bahan kimia terbuang / luput</option>
+                      <option value="Lain-lain SW">Lain-lain Kod SW (nyatakan dalam catatan)</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="noESWIS">No. Rujukan eSWIS / Nota Konsainan <span class="req">*</span></label>
+                    <input type="text" id="noESWIS" name="noESWIS" placeholder="cth: CN-2026-004821" />
+                  </div>
+                  <div class="field field-full">
+                    <label for="statusPematuhan">Status Pengasingan &amp; Pelabelan <span class="req">*</span></label>
+                    <select id="statusPematuhan" name="statusPematuhan">
+                      <option value="Patuh Penuh">Patuh Penuh (Diasingkan &amp; Berlabel JAS)</option>
+                      <option value="Dalam Tindakan">Dalam Tindakan Pembetulan</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="jenisSisa">Jenis Sisa <span class="req">*</span></label>
+                  <select id="jenisSisa" name="jenisSisa" required>
+                    <option value="">-- Pilih Jenis Sisa --</option>
+                    <option>Kertas &amp; Kadbod</option>
+                    <option>Plastik Industri / Pembungkusan</option>
+                    <option>Logam &amp; Besi Skrap</option>
+                    <option>Kayu &amp; Palet</option>
+                    <option>Kaca</option>
+                    <option>Sisa Makanan &amp; Organik</option>
+                    <option>Sisa Tekstil &amp; Getah</option>
+                    <option>Sisa Pepejal Am / Bercampur</option>
+                    <option>Sisa Minyak &amp; Pelincir Terpakai</option>
+                    <option>Sisa Kimia &amp; Pelarut</option>
+                    <option>Sisa Elektronik &amp; Elektrik (E-Sisa)</option>
+                    <option>Bekas / Kain Tercemar</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="kuantitiDijana">Jumlah Kuantiti Dijana <span class="req">*</span></label>
+                  <div class="input-with-unit">
+                    <input type="number" id="kuantitiDijana" name="kuantitiDijana" min="0.01" step="0.01" placeholder="0.00" required />
+                    <select id="unitKuantiti" name="unitKuantiti" aria-label="Unit Kuantiti">
+                      <option value="tan">Tan Metrik</option>
+                      <option value="kg">Kilogram (kg)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="kekerapan">Kekerapan Janaan</label>
+                  <select id="kekerapan" name="kekerapan">
+                    <option value="Bulanan">Bulanan</option>
+                    <option value="Mingguan">Mingguan</option>
+                    <option value="Harian">Harian</option>
+                    <option value="Sekali-sekala">Sekali-sekala / Projek</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="catatanSisa">Catatan Tambahan / Spesifikasi</label>
+                  <input type="text" id="catatanSisa" name="catatanSisa" placeholder="Butiran pembungkusan atau stor sementara..." />
+                </div>
+              </div>
+            </div>
+
+            <!-- BAHAGIAN 3: KAEDAH PENGURUSAN & PECAHAN KUANTITI -->
+            <div class="card form-section" id="section-3" data-section="3">
+              <div class="card-head">
+                <span class="step-pill">Langkah 3</span>
+                <div>
+                  <h3>Kaedah Pengurusan &amp; Pecahan Kuantiti</h3>
+                  <p>Jejak kuantiti dikitar semula, dipulihkan, atau dilupuskan (jumlah mesti sepadan dengan kuantiti dijana).</p>
+                </div>
+              </div>
+
+              <div class="quick-assign-row">
+                <span>Agihan Pantas (100%):</span>
+                <button type="button" class="btn-chip" data-quick-assign="kitarSemula">Semua Kitar Semula</button>
+                <button type="button" class="btn-chip" data-quick-assign="pulih">Semua Pulih</button>
+                <button type="button" class="btn-chip" data-quick-assign="lupus">Semua Lupuskan</button>
+              </div>
+
+              <div class="method-grid">
+                <div class="method-card method-recycle">
+                  <div class="method-head">
+                    <span class="method-dot"></span>
+                    <div>
+                      <h4>Kitar Semula</h4>
+                      <small>Pemprosesan semula bahan</small>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="kuantitiKitarSemula">Kuantiti (<span class="unit-label">tan</span>)</label>
+                    <input type="number" id="kuantitiKitarSemula" name="kuantitiKitarSemula" min="0" step="0.01" value="0" required />
+                  </div>
+                </div>
+
+                <div class="method-card method-recover">
+                  <div class="method-head">
+                    <span class="method-dot"></span>
+                    <div>
+                      <h4>Pulih</h4>
+                      <small>Pemulihan tenaga / bahan</small>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="kuantitiPulih">Kuantiti (<span class="unit-label">tan</span>)</label>
+                    <input type="number" id="kuantitiPulih" name="kuantitiPulih" min="0" step="0.01" value="0" required />
+                  </div>
+                </div>
+
+                <div class="method-card method-dispose">
+                  <div class="method-head">
+                    <span class="method-dot"></span>
+                    <div>
+                      <h4>Lupuskan</h4>
+                      <small>Tapak pelupusan / insinerator</small>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="kuantitiLupus">Kuantiti (<span class="unit-label">tan</span>)</label>
+                    <input type="number" id="kuantitiLupus" name="kuantitiLupus" min="0" step="0.01" value="0" required />
+                  </div>
+                </div>
+              </div>
+
+              <div class="balance-box" id="balance-box">
+                <div class="balance-top">
+                  <div>
+                    <span class="balance-label">Status Imbangan:</span>
+                    <strong id="balance-status-text">Masukkan kuantiti dijana</strong>
+                  </div>
+                  <div class="balance-metrics">
+                    <span>Diperuntukkan: <strong id="allocated-total">0.00</strong> <span class="unit-label">tan</span></span>
+                    <span>Baki: <strong id="balance-diff">0.00</strong> <span class="unit-label">tan</span></span>
+                    <span>Pengalihan: <strong id="diversion-rate">0%</strong></span>
+                  </div>
+                </div>
+                <div class="stacked-bar" aria-label="Pecahan Kaedah Pengurusan">
+                  <div class="bar-seg seg-recycle" id="bar-recycle" style="width: 0%"></div>
+                  <div class="bar-seg seg-recover" id="bar-recover" style="width: 0%"></div>
+                  <div class="bar-seg seg-dispose" id="bar-dispose" style="width: 0%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BAHAGIAN 4: MAKLUMAT FASILITI ATAU PENGENDALI PENERIMA -->
+            <div class="card form-section" id="section-4" data-section="4">
+              <div class="card-head">
+                <span class="step-pill">Langkah 4</span>
+                <div>
+                  <h3>Maklumat Fasiliti atau Pengendali Penerima</h3>
+                  <p>Kenal pasti fasiliti destinasi atau pengendali berlesen serta rekod penerimaan sisa.</p>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="namaFasiliti">Nama Fasiliti / Pengendali Penerima <span class="req">*</span></label>
+                  <input type="text" id="namaFasiliti" name="namaFasiliti" placeholder="cth: Pusat Kitar Semula Hijau Sdn. Bhd." required />
+                </div>
+                <div class="field">
+                  <label for="jenisFasiliti">Jenis Fasiliti / Saluran Destinasi <span class="req">*</span></label>
+                  <select id="jenisFasiliti" name="jenisFasiliti" required>
+                    <option value="">-- Pilih Jenis Fasiliti --</option>
+                    <option>Pusat Kitar Semula Berlesen</option>
+                    <option>Fasiliti Pemulihan Bahan / Tenaga</option>
+                    <option>Tapak Pelupusan Sanitari</option>
+                    <option>Premis Yang Ditetapkan JAS (Sisa Terjadual)</option>
+                    <option>Kontraktor Pengangkutan Berlesen</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="noLesenFasiliti">No. Lesen / Permit Pengendali <span class="req">*</span></label>
+                  <input type="text" id="noLesenFasiliti" name="noLesenFasiliti" placeholder="cth: JAS-PYDT-00412 / SWC-8812" required />
+                </div>
+                <div class="field">
+                  <label for="tarikhPenerimaan">Tarikh Penyerahan / Penerimaan <span class="req">*</span></label>
+                  <input type="date" id="tarikhPenerimaan" name="tarikhPenerimaan" required />
+                </div>
+                <div class="field">
+                  <label for="noResit">No. Resit / Nota Penghantaran (DO) <span class="req">*</span></label>
+                  <input type="text" id="noResit" name="noResit" placeholder="cth: DO-2026-1189" required />
+                </div>
+                <div class="field">
+                  <label for="lokasiFasiliti">Lokasi / Negeri Destinasi <span class="req">*</span></label>
+                  <input type="text" id="lokasiFasiliti" name="lokasiFasiliti" placeholder="cth: Shah Alam, Selangor" required />
+                </div>
+              </div>
+
+              <div class="declaration-box">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="pengakuan" name="pengakuan" required />
+                  <span>
+                    Saya mengesahkan bahawa maklumat pelaporan sisa ini adalah benar, tepat, dan sebarang
+                    <strong>sisa terjadual telah diasingkan daripada sisa pepejal biasa</strong> serta diuruskan mengikut keperluan perundangan yang berkuat kuasa.
+                  </span>
+                </label>
+              </div>
+
+              <div id="form-error-box" class="alert-bar alert-err hidden" role="alert"></div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-ghost" id="reset-form-btn">Set Semula</button>
+                <button type="submit" class="btn btn-primary" id="submit-form-btn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>
+                  Hantar &amp; Simpan Laporan
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Sticky Right Live-Check Panel (like iSi.SA Sisa Makanan form) -->
+          <aside class="side-summary" aria-label="Semakan Langsung Borang">
+            <div class="card sticky-card">
+              <div class="summary-head">
+                <h3>Semakan Langsung</h3>
+                <span class="pill-tag">IMBANG MASSA</span>
+              </div>
+
+              <dl class="summary-list">
+                <div>
+                  <dt>Sektor dipilih</dt>
+                  <dd id="live-sektor">Belum dipilih</dd>
+                </div>
+                <div>
+                  <dt>Kategori pengasingan</dt>
+                  <dd id="live-kategori">Sisa Pepejal Biasa</dd>
+                </div>
+                <div>
+                  <dt>Kuantiti dijana</dt>
+                  <dd id="live-dijana">0.00 tan</dd>
+                </div>
+                <div>
+                  <dt>Status imbangan</dt>
+                  <dd id="live-status">Menunggu input</dd>
+                </div>
+                <div>
+                  <dt>Kadar pengalihan</dt>
+                  <dd id="live-diversion">0%</dd>
+                </div>
+              </dl>
+
+              <div class="summary-divider"></div>
+              <div class="checklist-title">Kelengkapan Borang</div>
+              <ul class="checklist">
+                <li id="chk-1"><span class="chk-dot"></span> Sektor &amp; maklumat premis</li>
+                <li id="chk-2"><span class="chk-dot"></span> Jenis, kategori &amp; kuantiti sisa</li>
+                <li id="chk-3"><span class="chk-dot"></span> Pecahan kaedah sepadan (100%)</li>
+                <li id="chk-4"><span class="chk-dot"></span> Maklumat fasiliti penerima</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ==================== VIEW 2: REKOD LAPORAN ==================== -->
+      <section id="records-view" class="view-panel">
+        <div class="card">
+          <div class="toolbar">
+            <div>
+              <h3>Senarai Rekod Pelaporan Sisa</h3>
+              <p>Semak, tapis, sunting, cetak, atau eksport data pelaporan sisa industri dan komersial.</p>
+            </div>
+            <div class="toolbar-actions">
+              <button type="button" class="btn btn-ghost btn-sm" id="export-csv-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Eksport CSV
+              </button>
+              <button type="button" class="btn btn-primary btn-sm" id="new-report-btn">+ Laporan Baharu</button>
+            </div>
+          </div>
+
+          <div class="filter-bar">
+            <input type="search" id="search-input" placeholder="Cari premis, jenis sisa, kod SW, atau fasiliti..." />
+            <select id="filter-sektor">
+              <option value="ALL">Semua Sektor</option>
+              <option value="Industri">Industri</option>
+              <option value="Kilang">Kilang</option>
+              <option value="Gudang">Gudang</option>
+              <option value="Pusat Komersial">Pusat Komersial</option>
+              <option value="Premis Berkaitan">Premis Berkaitan</option>
+            </select>
+            <select id="filter-kategori">
+              <option value="ALL">Semua Kategori Sisa</option>
+              <option value="Sisa Pepejal Biasa">Sisa Pepejal Biasa</option>
+              <option value="Sisa Terjadual">Sisa Terjadual (Diasingkan)</option>
+            </select>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID &amp; Tarikh</th>
+                  <th>Sektor &amp; Premis</th>
+                  <th>Kategori &amp; Jenis Sisa</th>
+                  <th class="num">Dijana (Tan)</th>
+                  <th class="num">Kitar Semula</th>
+                  <th class="num">Pulih</th>
+                  <th class="num">Lupuskan</th>
+                  <th>Fasiliti Penerima</th>
+                  <th>Tindakan</th>
+                </tr>
+              </thead>
+              <tbody id="records-tbody"></tbody>
+            </table>
+          </div>
+          <div id="empty-records" class="empty-state hidden">
+            Belum ada rekod pelaporan disimpan, atau tiada rekod yang sepadan dengan carian anda.
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== VIEW 3: ANALISIS SEKTOR ==================== -->
+      <section id="analytics-view" class="view-panel">
+        <div class="kpi-grid">
+          <div class="kpi-card kpi-blue">
+            <span class="kpi-label">Jumlah Sisa Dijana</span>
+            <strong class="kpi-value" id="kpi-total-ton">0.00 tan</strong>
+            <span class="kpi-sub" id="kpi-total-records">0 laporan direkodkan</span>
+          </div>
+          <div class="kpi-card kpi-green">
+            <span class="kpi-label">Kadar Kitar Semula &amp; Pulih</span>
+            <strong class="kpi-value" id="kpi-diversion">0%</strong>
+            <span class="kpi-sub" id="kpi-diversion-ton">0.00 tan dialihkan daripada pelupusan</span>
+          </div>
+          <div class="kpi-card kpi-amber">
+            <span class="kpi-label">Sisa Terjadual (Diasingkan)</span>
+            <strong class="kpi-value" id="kpi-scheduled-ton">0.00 tan</strong>
+            <span class="kpi-sub" id="kpi-scheduled-count">0 rekod patuh perundangan</span>
+          </div>
+          <div class="kpi-card kpi-purple">
+            <span class="kpi-label">Sektor Penjana Tertinggi</span>
+            <strong class="kpi-value" id="kpi-top-sector">-</strong>
+            <span class="kpi-sub" id="kpi-top-sector-val">0.00 tan metrik</span>
+          </div>
+        </div>
+
+        <div class="analytics-grid">
+          <div class="card">
+            <div class="card-head-inline">
+              <div>
+                <h3>Analisis Janaan Sisa Mengikut Sektor Industri</h3>
+                <p>Perbandingan kuantiti (tan metrik) antara Sisa Pepejal Biasa dan Sisa Terjadual.</p>
+              </div>
+              <div class="legend-inline">
+                <span><i class="dot dot-normal"></i> Sisa Pepejal Biasa</span>
+                <span><i class="dot dot-scheduled"></i> Sisa Terjadual</span>
+              </div>
+            </div>
+            <div id="sector-chart" class="sector-chart"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head-inline">
+              <div>
+                <h3>Pecahan Kaedah Pengurusan Sisa</h3>
+                <p>Agihan keseluruhan mengikut Kitar Semula, Pulih, dan Lupuskan.</p>
+              </div>
+            </div>
+            <div class="donut-layout">
+              <div id="method-donut" class="donut-wrap"></div>
+              <div id="method-legend" class="method-legend"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head-inline">
+            <div>
+              <h3>Ringkasan Prestasi Pengurusan Mengikut Sektor</h3>
+              <p>Jadual terperinci janaan, kaedah pengurusan, dan kadar pengalihan mengikut sektor.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Sektor</th>
+                  <th class="num">Bil. Laporan</th>
+                  <th class="num">Sisa Biasa (Tan)</th>
+                  <th class="num">Sisa Terjadual (Tan)</th>
+                  <th class="num">Jumlah Dijana (Tan)</th>
+                  <th class="num">Kitar Semula (Tan)</th>
+                  <th class="num">Pulih (Tan)</th>
+                  <th class="num">Lupuskan (Tan)</th>
+                  <th class="num">Kadar Pengalihan</th>
+                </tr>
+              </thead>
+              <tbody id="sector-summary-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Official Navy Footer with Green Top Border -->
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div class="foot-left">
+        <strong>iSi.SA</strong> — Informasi Sisa Shah Alam · Pelaporan Sisa Industri dan Komersial
+      </div>
+      <div class="foot-right">
+        © 2026 Jabatan Kebersihan Awam &amp; Kelestarian Sisa (JKAKS) · Majlis Bandaraya Shah Alam
+      </div>
+    </div>
+  </footer>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Butiran Laporan Sisa</h3>
+        <button type="button" class="icon-close" id="close-modal-btn" aria-label="Tutup">&times;</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost btn-sm" id="print-modal-btn">Cetak Rekod</button>
+        <button type="button" class="btn btn-primary btn-sm" id="close-modal-footer-btn">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
