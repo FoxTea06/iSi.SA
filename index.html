@@ -10,10 +10,8 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Top Tricolor Brand Strip -->
   <div class="strip" aria-hidden="true"></div>
-
-  <!-- Top Header -->
+  
   <header class="topbar">
     <div class="topbar-left">
       <button type="button" class="menu-toggle" id="menu-toggle-btn" aria-label="Buka menu navigasi">
@@ -58,10 +56,8 @@
       </button>
     </div>
   </header>
-
-  <!-- Main Shell: Sidebar + Workspace -->
+  
   <div class="layout">
-    <!-- Left Sidebar -->
     <aside class="sidenav" id="sidenav" aria-label="Navigasi Utama">
       <div class="nav-group">
         <button type="button" class="nav-link active" data-view="form-view">
@@ -107,11 +103,9 @@
         <p>Data sisa terjadual perlu <b>diasingkan</b> daripada sisa pepejal biasa dan diurus mengikut keperluan perundangan.</p>
       </div>
     </aside>
-
-    <!-- Main Workspace -->
+    
     <main class="main-content">
 
-      <!-- Navy Hero Overview Strip (mirrors iSi.SA Mass-Balance Hero) -->
       <section class="hero" aria-label="Ringkasan Aliran Pengurusan Sisa">
         <div class="hero-top">
           <div>
@@ -160,8 +154,7 @@
           Data sisa terjadual perlu <strong>diasingkan</strong> daripada sisa pepejal biasa dan diurus mengikut keperluan perundangan (Akta Kualiti Alam Sekeliling 1974 / Buangan Terjadual 2005).
         </div>
       </section>
-
-      <!-- ==================== VIEW 1: BORANG PELAPORAN ==================== -->
+      
       <section id="form-view" class="view-panel active">
         <div id="edit-mode-banner" class="alert-bar alert-warn hidden">
           <span><strong>Mod Suntingan:</strong> Anda sedang mengemas kini rekod <strong id="edit-record-id"></strong>.</span>
@@ -170,7 +163,6 @@
 
         <div class="form-layout">
           <form id="waste-report-form" novalidate>
-            <!-- BAHAGIAN 1: PENGUMPULAN DATA DARIPADA PELBAGAI SEKTOR -->
             <div class="card form-section" id="section-1" data-section="1">
               <div class="card-head">
                 <span class="step-pill">Langkah 1</span>
@@ -281,7 +273,6 @@
               </div>
             </div>
 
-            <!-- BAHAGIAN 2: JENIS DAN KUANTITI SISA YANG DIJANA -->
             <div class="card form-section" id="section-2" data-section="2">
               <div class="card-head">
                 <span class="step-pill">Langkah 2</span>
@@ -312,7 +303,6 @@
                 </div>
               </div>
 
-              <!-- Dynamic Legal Fields for Sisa Terjadual -->
               <div id="scheduled-waste-panel" class="scheduled-panel hidden">
                 <div class="scheduled-panel-header">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -397,7 +387,6 @@
               </div>
             </div>
 
-            <!-- BAHAGIAN 3: KAEDAH PENGURUSAN & PECAHAN KUANTITI -->
             <div class="card form-section" id="section-3" data-section="3">
               <div class="card-head">
                 <span class="step-pill">Langkah 3</span>
@@ -478,7 +467,6 @@
               </div>
             </div>
 
-            <!-- BAHAGIAN 4: MAKLUMAT FASILITI ATAU PENGENDALI PENERIMA -->
             <div class="card form-section" id="section-4" data-section="4">
               <div class="card-head">
                 <span class="step-pill">Langkah 4</span>
@@ -544,7 +532,6 @@
             </div>
           </form>
 
-          <!-- Sticky Right Live-Check Panel (like iSi.SA Sisa Makanan form) -->
           <aside class="side-summary" aria-label="Semakan Langsung Borang">
             <div class="card sticky-card">
               <div class="summary-head">
@@ -588,7 +575,6 @@
         </div>
       </section>
 
-      <!-- ==================== VIEW 2: REKOD LAPORAN ==================== -->
       <section id="records-view" class="view-panel">
         <div class="card">
           <div class="toolbar">
@@ -646,7 +632,6 @@
         </div>
       </section>
 
-      <!-- ==================== VIEW 3: ANALISIS SEKTOR ==================== -->
       <section id="analytics-view" class="view-panel">
         <div class="kpi-grid">
           <div class="kpi-card kpi-blue">
@@ -730,7 +715,6 @@
     </main>
   </div>
 
-  <!-- Official Navy Footer with Green Top Border -->
   <footer class="site-foot">
     <div class="foot-inner">
       <div class="foot-left">
@@ -757,7 +741,6 @@
     </div>
   </div>
 
-  <!-- Toast Notification -->
   <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
