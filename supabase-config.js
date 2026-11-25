@@ -12,5 +12,10 @@
 window.ISISA_SUPABASE_CONFIG = {
   url: "https://zqyimlwbnawmpzcwhvmp.supabase.co",
   anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxeWltbHdibmF3bXB6Y3dodm1wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMDczNzQsImV4cCI6MjExMDY4MzM3NH0.yUWijdbztWXyKbZ4ZfEAgoTALGS-4m3lcbV8OMXP60I",
-  tableName: "pelaporan_sisa"
+  tableName: "rekod_sisa_industri",
+  tables: {
+    kontraktor: "kontraktor_paksi",
+    industri: "industri_paksi",
+    rekodSisa: "rekod_sisa_industri"
+  }
 };

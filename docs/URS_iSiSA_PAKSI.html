@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <title>URS — Sistem Pelaporan Sisa Industri (iSi.SA · PAKSI)</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 18mm 20mm 18mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Segoe UI", Helvetica, sans-serif;
+      font-size: 10pt;
+      line-height: 1.5;
+      color: #000000;
+      background: #FFFFFF;
+    }
+
+    /* Cover Page */
+    .cover {
+      min-height: 250mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      page-break-after: always;
+    }
+
+    .cover-title-block {
+      margin-top: 28mm;
+      padding: 20px 0;
+      border-top: 2px solid #000000;
+      border-bottom: 2px solid #000000;
+      text-align: center;
+    }
+
+    .cover-kicker {
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .cover-title-block h1 {
+      margin: 0 0 10px;
+      font-size: 18pt;
+      line-height: 1.3;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .cover-subtitle {
+      margin: 0;
+      font-size: 11pt;
+      font-weight: 400;
+    }
+
+    .doc-control {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+      font-size: 9.5pt;
+    }
+
+    .doc-control th,
+    .doc-control td {
+      border: 1px solid #000000;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .doc-control th {
+      width: 32%;
+      font-weight: 700;
+      background: #F2F2F2;
+    }
+
+    .cover-footer {
+      border-top: 1px solid #000000;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 8.5pt;
+    }
+
+    /* Headings & Text */
+    h2 {
+      font-size: 12.5pt;
+      font-weight: 700;
+      color: #000000;
+      margin: 20px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #000000;
+      text-transform: uppercase;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #000000;
+      margin: 14px 0 6px;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin: 0 0 8px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin: 4px 0 10px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Tables */
+    table.std {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 14px;
+      font-size: 9pt;
+      page-break-inside: auto;
+    }
+
+    table.std thead {
+      display: table-header-group;
+    }
+
+    table.std tr {
+      page-break-inside: avoid;
+    }
+
+    table.std th {
+      background: #EAEAEA;
+      color: #000000;
+      font-weight: 700;
+      text-align: left;
+      padding: 7px 8px;
+      border: 1px solid #000000;
+    }
+
+    table.std td {
+      padding: 6.5px 8px;
+      border: 1px solid #000000;
+      vertical-align: top;
+    }
+
+    .note-box {
+      border: 1px solid #000000;
+      padding: 10px 12px;
+      margin: 10px 0 14px;
+      font-size: 9.2pt;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .sign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+      page-break-inside: avoid;
+    }
+
+    .sign-box {
+      border: 1px solid #000000;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 120px;
+    }
+
+    .sign-box h4 {
+      margin: 0 0 32px;
+      font-size: 8.8pt;
+      text-transform: uppercase;
+    }
+
+    .sign-line {
+      border-top: 1px solid #000000;
+      padding-top: 5px;
+      font-size: 8.5pt;
+      line-height: 1.6;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 8.8pt;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HALAMAN MUKA ==================== -->
+  <section class="cover">
+    <div>
+      <div class="cover-title-block">
+        <div class="cover-kicker">User Requirement Specification (URS)</div>
+        <h1>Spesifikasi Keperluan Pengguna<br />Sistem Pelaporan Sisa Industri (PAKSI)</h1>
+        <p class="cover-subtitle">iSi.SA — Informasi Sisa Shah Alam<br />Jabatan Kebersihan Awam &amp; Kelestarian Sisa (JKAKS), Majlis Bandaraya Shah Alam (MBSA)</p>
+      </div>
+
+      <table class="doc-control">
+        <tr>
+          <th>Nama Sistem</th>
+          <td>iSi.SA — Sistem Pelaporan Sisa Industri (PAKSI)</td>
+        </tr>
+        <tr>
+          <th>Pemilik Sistem</th>
+          <td>Jabatan Kebersihan Awam &amp; Kelestarian Sisa (JKAKS), Majlis Bandaraya Shah Alam (MBSA)</td>
+        </tr>
+        <tr>
+          <th>Versi Dokumen</th>
+          <td>Versi 1.0</td>
+        </tr>
+        <tr>
+          <th>Tarikh Disediakan</th>
+          <td>25 November 2026</td>
+        </tr>
+        <tr>
+          <th>Status Dokumen</th>
+          <td>Draf Akhir untuk Semakan &amp; Pengesahan Pengguna</td>
+        </tr>
+        <tr>
+          <th>Platform Teknologi</th>
+          <td>Aplikasi Web (HTML5, CSS3, JavaScript, jsPDF) &amp; Pangkalan Data PostgreSQL (Supabase)</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="cover-footer">
+      <span>iSi.SA — Pelaporan Sisa Industri (PAKSI)</span>
+      <span>Majlis Bandaraya Shah Alam (MBSA)</span>
+    </div>
+  </section>
+
+  <!-- ==================== SEKSYEN 1: PENGENALAN ==================== -->
+  <h2>1. Pengenalan</h2>
+
+  <h3>1.1 Tujuan Dokumen</h3>
+  <p>Dokumen Spesifikasi Keperluan Pengguna (<em>User Requirement Specification</em> — URS) ini disediakan untuk mendokumenkan keperluan perniagaan, keperluan fungsian, keperluan bukan fungsian, kawalan akses pengguna, serta struktur pangkalan data bagi Sistem Pelaporan Sisa Industri (PAKSI) di bawah ekosistem iSi.SA (Informasi Sisa Shah Alam).</p>
+
+  <h3>1.2 Objektif Sistem</h3>
+  <ul>
+    <li>Menyediakan platform digital berpusat bagi pendaftaran Panel Kontraktor Sisa Industri (PAKSI) dan senarai Industri di bawah perkhidmatan mereka dalam kawasan pentadbiran MBSA (Seksyen 1–36 dan Seksyen U1–U20).</li>
+    <li>Memudahkan kontraktor merekodkan jenis dan kuantiti sisa industri (dalam Tan Metrik), kekerapan kutipan, maklumat tapak pelupusan, serta butiran resit pelupusan melalui satu borang bersepadu.</li>
+    <li>Membolehkan pihak berkuasa (Staff MBSA / JKAKS) memantau statistik secara interaktif melalui Dashboard Utama, menapis serta menyusun rekod mengikut Seksyen, mengeksport laporan PDF/CSV, dan menjana resit rasmi PDF (individu atau secara pukal).</li>
+    <li>Mengasingkan capaian data mengikut peranan supaya setiap kontraktor hanya dapat melihat rekod milik sendiri, manakala Staff MBSA mempunyai capaian menyeluruh.</li>
+  </ul>
+
+  <h3>1.3 Skop Sistem</h3>
+  <div class="note-box">
+    <strong>Skop Fokus:</strong> Sistem ini merangkumi pengurusan data sisa pepejal industri yang dikutip oleh Panel Kontraktor Sisa Industri (PAKSI) ke tapak pelupusan. Pengurusan dan pelaporan Sisa Terjadual (Scheduled Waste / eSWIS) serta pecahan kaedah kitar semula atau pemulihan adalah di luar skop modul ini.
+  </div>
+
+  <h3>1.4 Akronim &amp; Definisi</h3>
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 24%;">Istilah / Akronim</th>
+        <th>Definisi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>iSi.SA</strong></td><td>Informasi Sisa Shah Alam — platform pengurusan data sisa bersepadu MBSA.</td></tr>
+      <tr><td><strong>PAKSI</strong></td><td>Panel Kontraktor Sisa Industri yang dilantik oleh Majlis Bandaraya Shah Alam.</td></tr>
+      <tr><td><strong>MBSA / JKAKS</strong></td><td>Majlis Bandaraya Shah Alam / Jabatan Kebersihan Awam &amp; Kelestarian Sisa.</td></tr>
+      <tr><td><strong>Seksyen MBSA</strong></td><td>Zon pentadbiran rasmi Shah Alam merangkumi Seksyen 1 hingga Seksyen 36 serta Seksyen U1 hingga Seksyen U20.</td></tr>
+      <tr><td><strong>Tan Metrik (t)</strong></td><td>Unit piawai tunggal yang digunakan bagi merekodkan jumlah kuantiti sisa industri dalam sistem.</td></tr>
+      <tr><td><strong>RLS</strong></td><td><em>Row Level Security</em> — mekanisme keselamatan capaian baris pangkalan data PostgreSQL/Supabase.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== SEKSYEN 2: PERANAN & KAWALAN AKSES ==================== -->
+  <div class="page-break"></div>
+  <h2>2. Peranan Pengguna &amp; Kawalan Akses</h2>
+  <p>Sistem menyokong dua (2) peranan akaun utama yang boleh ditukar melalui suis peranan di penjuru kanan atas aplikasi (serta pilihan profil kontraktor aktif bagi mod Kontraktor):</p>
+
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 34%;">Fungsi / Modul Sistem</th>
+        <th style="width: 33%;">Staff MBSA (JKAKS)</th>
+        <th style="width: 33%;">Kontraktor PAKSI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dashboard Utama Interaktif (3 Panel)</td>
+        <td><strong>Semua Data</strong> — Semua kontraktor, industri &amp; sisa</td>
+        <td><strong>Terhad</strong> — Data milik syarikat sendiri sahaja</td>
+      </tr>
+      <tr>
+        <td>Borang Pelaporan Bersepadu (Kontraktor, Industri, Sisa)</td>
+        <td><strong>Penuh</strong> — Daftar baharu atau pilih mana-mana kontraktor</td>
+        <td><strong>Terhad</strong> — Profil sendiri &amp; industri bawah kontraktor sendiri</td>
+      </tr>
+      <tr>
+        <td>Paparan Rekod Laporan, Carian &amp; Susunan Seksyen</td>
+        <td><strong>Semua Rekod</strong> — Paparan menyeluruh semua kontraktor</td>
+        <td><strong>Rekod Sendiri</strong> — Hanya rekod syarikat sendiri</td>
+      </tr>
+      <tr>
+        <td>Sunting &amp; Padam Rekod Laporan</td>
+        <td><strong>Dibenarkan</strong> — Semua rekod</td>
+        <td><strong>Dibenarkan</strong> — Rekod milik sendiri sahaja</td>
+      </tr>
+      <tr>
+        <td>Eksport Laporan PDF &amp; CSV</td>
+        <td><strong>Dibenarkan</strong> — Semua rekod ditapis</td>
+        <td><strong>Dibenarkan</strong> — Rekod sendiri sahaja</td>
+      </tr>
+      <tr>
+        <td>Jana Resit Rasmi PDF (Individu)</td>
+        <td><strong>Dibenarkan</strong> — Mana-mana rekod</td>
+        <td><strong>Dibenarkan</strong> — Rekod sendiri sahaja</td>
+      </tr>
+      <tr>
+        <td>Muat Turun Pelbagai Resit PDF (Kotak Semak Pukal)</td>
+        <td><strong>Eksklusif MBSA</strong> — Pilih berbilang rekod &amp; jana satu PDF</td>
+        <td><strong>Tidak Dibenarkan</strong> — Disembunyikan daripada paparan</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== SEKSYEN 3: KEPERLUAN FUNGSIAN ==================== -->
+  <div class="page-break"></div>
+  <h2>3. Keperluan Fungsian (Functional Requirements)</h2>
+
+  <h3>3.1 FR-01: Dashboard Utama Interaktif</h3>
+  <p>Halaman utama sistem memaparkan tiga (3) kad statistik interaktif. Apabila pengguna menekan mana-mana kad, senarai terperinci berkaitan akan dipaparkan secara langsung di bawahnya berserta pilihan susunan Seksyen (Seksyen 1 → U20, U20 → 1, atau Terkini):</p>
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 11%;">Kod</th>
+        <th style="width: 33%;">Panel Dashboard</th>
+        <th>Tingkah Laku Interaktif &amp; Paparan Senarai</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>FR-01.1</strong></td>
+        <td>Jumlah Panel Kontraktor Sisa Industri</td>
+        <td>Memaparkan bilangan kontraktor berdaftar. Klik panel memaparkan jadual senarai kontraktor (Nama, SSM, Seksyen, Tarikh Lantikan, Bil. Lori &amp; Plat, Pegawai Pelapor, Bil. Kilang) bersama butang Lihat dan Isi Laporan.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-01.2</strong></td>
+        <td>Jumlah Industri di bawah Perkhidmatan PAKSI</td>
+        <td>Memaparkan bilangan industri berdaftar. Klik panel memaparkan jadual senarai industri (Nama Industri, Seksyen, Alamat, Jenis Perniagaan, Panel Kontraktor PAKSI, Tarikh Pelaporan) bersama butang Isi Laporan.</td>
+      </tr>
+      <tr>
+        <td><strong>FR-01.3</strong></td>
+        <td>Jumlah Sisa Industri (Tan Metrik)</td>
+        <td>Memaparkan jumlah kumulatif sisa industri dalam Tan Metrik. Klik panel memaparkan jadual rekod sisa industri (ID, Tarikh, Seksyen, Industri, Kontraktor, Jenis Sisa, Kekerapan Kutipan, Kuantiti Tan, Tapak Pelupusan) bersama butang Lihat dan Resit PDF.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 FR-02: Borang Pelaporan Bersepadu (Satu Borang, Tiga Bahagian)</h3>
+  <p>Pendaftaran Maklumat Kontraktor, Maklumat Industri, dan Pelaporan Jenis &amp; Kuantiti Sisa digabungkan dalam satu borang bersepadu di bawah menu Borang Pelaporan. Submenu bernombor (1, 2, 3) akan berkembang secara automatik di bawah teks Borang Pelaporan pada bar sisi kiri apabila pengguna membuka borang.</p>
+
+  <p><strong>Bahagian 1 — Maklumat Kontraktor PAKSI</strong> (menyokong pilihan Kontraktor Sedia Ada untuk isi automatik atau Daftar Kontraktor Baharu):</p>
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Medan Data</th>
+        <th style="width: 22%;">Jenis Input</th>
+        <th style="width: 12%;">Status</th>
+        <th>Keterangan / Validasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Nama Kontraktor</td><td>Teks</td><td>Wajib</td><td>Nama rasmi syarikat kontraktor PAKSI.</td></tr>
+      <tr><td>Seksyen &amp; Alamat Kontraktor</td><td>Dropdown + Teks</td><td>Wajib</td><td>Dropdown rasmi Seksyen 1–36 &amp; U1–U20 untuk susunan Seksyen.</td></tr>
+      <tr><td>Tarikh Lantikan PAKSI</td><td>Tarikh</td><td>Wajib</td><td>Tarikh rasmi pelantikan sebagai panel PAKSI.</td></tr>
+      <tr><td>Lampiran Sijil Lantikan PAKSI</td><td>Muat Naik Fail</td><td>Pilihan</td><td>Format PDF atau imej (had 3MB); boleh dimuat turun semula.</td></tr>
+      <tr><td>No. Pendaftaran Fail</td><td>Teks</td><td>Wajib</td><td>Nombor rujukan fail pendaftaran MBSA/JKAKS.</td></tr>
+      <tr><td>No. Lesen Industri</td><td>Teks</td><td>Wajib</td><td>Nombor lesen operasi industri kontraktor.</td></tr>
+      <tr><td>No. Lesen Buang Sampah</td><td>Teks</td><td>Wajib</td><td>Nombor lesen pelupusan sampah berdaftar.</td></tr>
+      <tr><td>No. SSM</td><td>Teks</td><td>Wajib</td><td>Nombor pendaftaran Suruhanjaya Syarikat Malaysia.</td></tr>
+      <tr><td>Bil. Lori</td><td>Nombor Integer</td><td>Wajib</td><td>Jumlah kenderaan lori yang beroperasi (minimum 1).</td></tr>
+      <tr><td>No. Plat Lori (Slot Dinamik)</td><td>Senarai Teks</td><td>Wajib</td><td>Menyokong butang + Tambah Slot Lori dan buang slot secara dinamik.</td></tr>
+      <tr><td>Nama &amp; No. Telefon Pegawai Pelapor</td><td>Teks + Telefon</td><td>Wajib</td><td>Maklumat pegawai bertanggungjawab bagi pihak kontraktor.</td></tr>
+      <tr><td>Bil. Kilang di bawah Perkhidmatan</td><td>Nombor Integer</td><td>Wajib</td><td>Jumlah kilang/premis industri yang diselia kontraktor.</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Bahagian 2 — Maklumat Industri</strong> (menyokong pilihan Senarai Industri di bawah Kontraktor yang ditapis automatik atau Daftar Industri Baharu):</p>
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Medan Data</th>
+        <th style="width: 22%;">Jenis Input</th>
+        <th style="width: 12%;">Status</th>
+        <th>Keterangan / Validasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Nama Industri</td><td>Teks</td><td>Wajib</td><td>Nama premis/kilang industri di bawah perkhidmatan PAKSI.</td></tr>
+      <tr><td>Seksyen &amp; Alamat Industri</td><td>Dropdown + Teks</td><td>Wajib</td><td>Dropdown rasmi Seksyen MBSA 1–36 &amp; U1–U20 bagi tujuan susunan rekod.</td></tr>
+      <tr><td>Tarikh Pelaporan</td><td>Tarikh</td><td>Wajib</td><td>Tarikh rekod pelaporan dikemukakan.</td></tr>
+      <tr><td>Jenis Perniagaan / Aktiviti</td><td>Dropdown</td><td>Wajib</td><td>11 kategori aktiviti industri (Pembuatan, Makanan, Logistik, Automotif, Elektronik, Percetakan, Plastik, Perabot, Pembinaan, Komersial, Lain-lain).</td></tr>
+      <tr><td>Panel Kontraktor PAKSI</td><td>Pautan Automatik</td><td>Wajib</td><td>Dipautkan secara langsung kepada kontraktor yang dipilih/didaftar di Bahagian 1.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+  <p><strong>Bahagian 3 — Jenis dan Kuantiti Sisa Industri:</strong></p>
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 30%;">Medan Data</th>
+        <th style="width: 22%;">Jenis Input</th>
+        <th style="width: 12%;">Status</th>
+        <th>Keterangan / Validasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Jenis Sisa Industri</td><td>Dropdown + Teks</td><td>Wajib</td><td>Kertas/Kadbod, Plastik, Logam/Skrap, Kayu/Palet, Kaca, Sisa Makanan, Tekstil/Getah, Sisa Pepejal Industri Am, dan Lain-lain (medan teks wajib muncul jika pilih Lain-lain).</td></tr>
+      <tr><td>Jumlah Kuantiti (Tan Metrik)</td><td>Nombor Perpuluhan</td><td>Wajib</td><td>Menggunakan unit Tan Metrik sahaja (nilai &gt; 0).</td></tr>
+      <tr><td>Kekerapan Kutipan</td><td>Dropdown</td><td>Wajib</td><td>Harian, 3 Kali Seminggu, Mingguan, Dua Minggu Sekali, Bulanan, atau Atas Permintaan.</td></tr>
+      <tr><td>Nama &amp; Alamat Tapak Pelupusan</td><td>Teks</td><td>Wajib</td><td>Maklumat destinasi tapak pelupusan sisa industri.</td></tr>
+      <tr><td>Maklumat Resit Pelupusan (Slot Dinamik)</td><td>No. Resit, Tarikh &amp; Lampiran</td><td>Wajib</td><td>Menyokong butang + Tambah Resit untuk menambah lebih daripada satu resit (lampiran fail pilihan had 3MB setiap fail).</td></tr>
+      <tr><td>Catatan Tambahan</td><td>Teks</td><td>Pilihan</td><td>Nota tambahan kutipan atau rujukan operasi.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.3 FR-03: Pengurusan Rekod Laporan, Carian &amp; Susunan Seksyen</h3>
+  <ul>
+    <li>Memaparkan jadual rekod laporan lengkap dengan ID, Tarikh, Seksyen, Industri, Kontraktor, Jenis Sisa, Kekerapan Kutipan, Kuantiti (Tan), Tapak Pelupusan, dan bilangan Resit.</li>
+    <li>Menyokong carian masa nyata (ID, nama industri, kontraktor, jenis sisa, atau no. resit) dan penapisan Seksyen.</li>
+    <li>Menyokong susunan (sorting) semula jadi mengikut Seksyen MBSA: Seksyen 1 → 36 → U1 → U20 (Menaik) dan U20 → U1 → 36 → 1 (Menurun), selain susunan mengikut Tarikh Terkini dan Kuantiti Tertinggi.</li>
+    <li>Menyokong tindakan Lihat Butiran (Modal), Resit PDF, Sunting (memuatkan semula ketiga-tiga bahagian ke dalam borang bersepadu), dan Padam.</li>
+  </ul>
+
+  <h3>3.4 FR-04: Eksport Laporan &amp; Penjanaan Resit Rasmi PDF</h3>
+  <ul>
+    <li><strong>Eksport PDF (Laporan Rekod):</strong> Menjana dokumen PDF berorientasikan landskap (A4) yang memuatkan jumlah rekod, jumlah tan metrik, dan semua baris rekod mengikut tapisan/susunan semasa.</li>
+    <li><strong>Eksport CSV:</strong> Menjana fail CSV (UTF-8 BOM) yang serasi dengan Microsoft Excel.</li>
+    <li><strong>Jana Resit Rasmi PDF (Individu &amp; Pukal):</strong> Apabila pihak berkuasa menekan butang Resit PDF (individu) atau menanda kotak semak berbilang rekod dan menekan Muat Turun Resit Terpilih (khusus Staff MBSA), sistem menjana fail PDF resit rasmi MBSA berformat A4 potret (satu halaman bagi setiap resit) secara dinamik.</li>
+  </ul>
+
+  <!-- ==================== SEKSYEN 4: PANGKALAN DATA & SENI BINA ==================== -->
+  <h2>4. Seni Bina Sistem &amp; Reka Bentuk Pangkalan Data</h2>
+
+  <h3>4.1 Seni Bina Teknikal</h3>
+  <ul>
+    <li><strong>Lapisan Antara Muka (Frontend):</strong> Aplikasi web ringan berasaskan HTML5, CSS3, dan Vanilla JavaScript dengan pustaka <code>jsPDF</code> + <code>jspdf-autotable</code> untuk penjanaan PDF di sisi pelayar.</li>
+    <li><strong>Lapisan Pangkalan Data (Backend-as-a-Service):</strong> Sambungan terus kepada PostgreSQL (Supabase) melalui pustaka rasmi <code>@supabase/supabase-js</code> v2 (konfigurasi di <code>supabase-config.js</code>), dengan mod sandaran automatik <code>localStorage</code> sekiranya tiada sambungan pangkalan data.</li>
+  </ul>
+
+  <h3>4.2 Struktur Jadual Pangkalan Data (<code>database/schema.sql</code>)</h3>
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 24%;">Nama Jadual / View</th>
+        <th style="width: 22%;">Kunci Utama / Asing</th>
+        <th>Fungsi &amp; Lajur Utama</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>public.kontraktor_paksi</code></td>
+        <td>PK: <code>id</code> (TEXT)</td>
+        <td>Menyimpan profil kontraktor, alamat, <code>seksyen</code>, <code>tarikh_lantikan_paksi</code>, <code>sijil_nama</code>, <code>sijil_data</code>, no. lesen &amp; SSM, <code>bil_lori</code>, tatasusunan <code>no_plat_lori TEXT[]</code>, maklumat pegawai, dan <code>bil_kilang</code>.</td>
+      </tr>
+      <tr>
+        <td><code>public.industri_paksi</code></td>
+        <td>PK: <code>id</code><br />FK: <code>kontraktor_id</code></td>
+        <td>Menyimpan maklumat industri (<code>nama_industri</code>, <code>alamat</code>, <code>seksyen</code>, <code>tarikh_pelaporan</code>, <code>jenis_perniagaan</code>) yang dipautkan secara rujukan (<code>ON DELETE CASCADE</code>) kepada <code>kontraktor_paksi</code>.</td>
+      </tr>
+      <tr>
+        <td><code>public.rekod_sisa_industri</code></td>
+        <td>PK: <code>id</code><br />FK: <code>kontraktor_id</code>, <code>industri_id</code></td>
+        <td>Menyimpan rekod kutipan sisa (<code>seksyen</code>, <code>tarikh_laporan</code>, <code>jenis_sisa</code>, <code>jenis_sisa_lain</code>, <code>kuantiti_tan</code>, <code>kekerapan_kutipan</code>, <code>nama_tapak_pelupusan</code>, <code>alamat_tapak_pelupusan</code>, <code>resit_list JSONB</code>, <code>catatan</code>).</td>
+      </tr>
+      <tr>
+        <td><code>public.v_dashboard_paksi</code></td>
+        <td>SQL View</td>
+        <td>Paparan agregat bagi statistik pantas jumlah kontraktor, jumlah industri, dan jumlah sisa industri (tan metrik).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== SEKSYEN 5: KEPERLUAN BUKAN FUNGSIAN ==================== -->
+  <div class="page-break"></div>
+  <h2>5. Keperluan Bukan Fungsian (Non-Functional Requirements)</h2>
+  <table class="std">
+    <thead>
+      <tr>
+        <th style="width: 22%;">Kategori</th>
+        <th>Spesifikasi Keperluan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Kebolehgunaan &amp; UI/UX</strong></td>
+        <td>
+          Selaras dengan identiti visual sistem iSi.SA (MBSA · JKAKS), menyokong Mod Cerah dan Mod Gelap, bar sisi kiri yang kekal (<em>sticky</em>) semasa borang ditatal, submenu bahagian borang boleh kembang, serta reka bentuk responsif bagi paparan desktop, tablet dan mudah alih.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Integriti Data</strong></td>
+        <td>
+          Validasi medan wajib di peringkat borang HTML5/JavaScript serta kekangan pangkalan data PostgreSQL (<code>CHECK kuantiti_tan &gt; 0</code>, integriti rujukan kunci asing, dan <em>trigger</em> kemas kini automatik <code>updated_at</code>).
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Prestasi</strong></td>
+        <td>
+          Indeks pangkalan data diwujudkan pada lajur <code>seksyen</code>, <code>kontraktor_id</code>, <code>industri_id</code>, dan <code>tarikh_laporan</code> bagi memastikan penapisan dan susunan rekod berjalan pantas. Had saiz fail lampiran ditetapkan pada 3MB bagi setiap fail.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Keselamatan</strong></td>
+        <td>
+          Pengasingan paparan data mengikut peranan (MBSA vs Kontraktor), perlindungan XSS melalui sanitasi output HTML (<code>escapeHtml</code>), dan sokongan <em>Row Level Security (RLS)</em> pada Supabase yang bersedia untuk integrasi pengesahan log masuk penuh (Supabase Auth) pada fasa pengeluaran.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Keserasian Pelayar</strong></td>
+        <td>
+          Serasi sepenuhnya dengan versi terkini Google Chrome, Microsoft Edge, Mozilla Firefox, dan Safari.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== SEKSYEN 6: PENGESAHAN & TANDATANGAN ==================== -->
+  <h2>6. Pengesahan &amp; Kelulusan Dokumen</h2>
+  <p>Dengan menandatangani dokumen ini, pihak berkepentingan mengesahkan bahawa semua keperluan yang dinyatakan dalam Spesifikasi Keperluan Pengguna (URS) ini telah disemak dan dipersetujui sebagai rujukan rasmi pembangunan Sistem Pelaporan Sisa Industri (iSi.SA · PAKSI).</p>
+
+  <div class="sign-grid">
+    <div class="sign-box">
+      <h4>Disediakan Oleh</h4>
+      <div class="sign-line">
+        Nama:<br />
+        Jawatan:<br />
+        Tarikh:
+      </div>
+    </div>
+    <div class="sign-box">
+      <h4>Disemak Oleh</h4>
+      <div class="sign-line">
+        Nama:<br />
+        Jawatan:<br />
+        Tarikh:
+      </div>
+    </div>
+    <div class="sign-box">
+      <h4>Diluluskan Oleh (JKAKS · MBSA)</h4>
+      <div class="sign-line">
+        Nama:<br />
+        Jawatan:<br />
+        Tarikh:
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
